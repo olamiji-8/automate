@@ -8,14 +8,20 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 1000;
 
 // Multer configuration for handling file uploads
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 // Middleware
-app.use(cors());
+// More specific CORS configuration
+app.use(cors({
+    origin: ['https://automate-sx3v.vercel.app', 'http://localhost:3000'],
+    methods: ['GET', 'POST'],
+    credentials: true
+  }));
+  
 app.use(express.json());
 
 // Email sending route with file upload
