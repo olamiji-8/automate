@@ -151,6 +151,7 @@ const EmailMarketing = () => {
               }`}>
                 {status}
               </div>
+              
             )}
           </div>
         </CardContent>
