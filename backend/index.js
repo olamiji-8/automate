@@ -16,12 +16,17 @@ const upload = multer({ storage: storage });
 
 // Middleware
 // More specific CORS configuration
+// CORS configuration - place this before defining any routes
 app.use(cors({
     origin: ['https://automate-sx3v.vercel.app', 'http://localhost:3000'],
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'OPTIONS'], // Add OPTIONS for preflight requests
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
   }));
   
+  // Then handle preflight requests explicitly
+  app.options('*', cors());
+
 app.use(express.json());
 
 // Email sending route with file upload
